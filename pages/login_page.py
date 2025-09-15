@@ -1,0 +1,29 @@
+import playwright
+from playwright.sync_api import Page
+
+class LoginPage:
+    def __init__(self, page: Page):
+        self.page = page
+        self.user_inp = "input[data-tes='username']"
+        self.password_inp = "input[data-tes='password']"
+        self.login_btn = "input[data-tes='login-button']"
+        self.error_msg = "[data-tes='error']"
+
+        # Identificador segun locators
+        # self.username_input = page.locator("input[name='username']")
+        # self.password_input = page.locator("input[name='password']")
+        # self.login_button = page.locator("button[type='submit']")
+        # self.error_message = page.locator(".error-message")
+
+    def goto(self, base_url: str):
+        self.page.goto(base_url)
+
+    def login(self, username, password):
+        self.page.fill(self.user_inp, username)
+        self.page.fill(self.password_inp, password)
+        self.page.click(self.login_btn)
+
+    def error_message(self):
+        if self.page.error_message:
+            return self.error_message.text_content()
+        return ""
