@@ -17,6 +17,16 @@ with open("data/users.json") as file:
 def test_login_variantes(page, user_key,expected_success):
     login = LoginPage(page)
     inventory = InventoryPage(page)
-    login.goto(BASE_URL)
-    creds = users[user_key]
-    login.login(creds["username"], creds["password"])
+    try:
+        login.goto(BASE_URL)
+        creds = users[user_key]
+        login.login(creds["username"], creds["password"])
+
+        if expected_success:
+            assert inventory.is_loaded(), "No se cargó la lista de productos"
+        else:
+            assert not inventory.is_loaded(), "No debería loguear"
+            assert login.error_message() != "", "Se esperaba mensaje de error"
+    except Exception:
+        page.screenshot(path=screenshot_path(f"login_{user_key}_fail"))
+        raise

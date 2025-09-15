@@ -1,5 +1,6 @@
 import playwright
 from playwright.sync_api import Page
+from utils.helpers import wait_for_5
 
 class LoginPage:
     def __init__(self, page: Page):
@@ -21,6 +22,7 @@ class LoginPage:
     def login(self, username, password):
         self.page.fill(self.user_inp, username)
         self.page.fill(self.password_inp, password)
+        wait_for_5()
         self.page.click(self.login_btn)
 
     def error_message(self):

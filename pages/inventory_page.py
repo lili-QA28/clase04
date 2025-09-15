@@ -4,8 +4,8 @@ class InventoryPage:
     def __init__(self, page: Page):
         self.page = page
         self.inventory_list = ".inventory_list" 
-        self.add_item_to_cart = "button[data-test^='add-to-cart-sauce-labsbackpack']"
-        self.cart_icon = "a.shopping_cart_link"
+        self.add_to_cart_btn = "button[data-test='add-to-cart-sauce-labs-backpack']"
+        self.cart_icon = ".shopping_cart_link"
         self.cart_badge = ".shopping_cart_badge"
         # self.product_title = "span[data-test='product_title']"
   
@@ -15,12 +15,12 @@ class InventoryPage:
     
     def add_first_item_to_cart(self):
         # self.page.click(self.add_to_cart_btn)
-        self.page.locator(self.add_to_card_btn).click()
+        self.page.locator(self.add_to_cart_btn).first.click()
 
-    def open_to_cart(self):
+    def open_cart(self):
         self.page.click(self.cart_icon)
 
-    def items_in_card(self):
+    def items_in_cart(self):
         if self.page.locator(self.cart_badge).is_visible():
             return int(self.page.locator(self.cart_badge).text_content())
         return 0
