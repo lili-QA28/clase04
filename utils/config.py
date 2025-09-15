@@ -1,4 +1,4 @@
 import os
 
 BASE_URL = os.getenv("BASE_URL", "http://www.saucedemo.com/")
-HEADLESS = os.getenv("HEADLESS", "true").lower() == "true"
+HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"

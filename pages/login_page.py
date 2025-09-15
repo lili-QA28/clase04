@@ -4,10 +4,10 @@ from playwright.sync_api import Page
 class LoginPage:
     def __init__(self, page: Page):
         self.page = page
-        self.user_inp = "input[data-tes='username']"
-        self.password_inp = "input[data-tes='password']"
-        self.login_btn = "input[data-tes='login-button']"
-        self.error_msg = "[data-tes='error']"
+        self.user_inp = "input[data-test='username']"
+        self.password_inp = "input[data-test='password']"
+        self.login_btn = "input[data-test='login-button']"
+        self.error_msg = "[data-test='error']"
 
         # Identificador segun locators
         # self.username_input = page.locator("input[name='username']")
